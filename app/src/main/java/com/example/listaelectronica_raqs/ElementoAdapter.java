@@ -3,6 +3,7 @@ package com.example.listaelectronica_raqs;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -49,24 +50,27 @@ public class ElementoAdapter extends RecyclerView.Adapter<ElementoAdapter.Elemen
     }
 
     static class ElementoViewHolder extends RecyclerView.ViewHolder {
+        ImageView imagen;
         TextView nombre;
-        TextView cantidad;
+        TextView precio;
 
         public ElementoViewHolder(@NonNull View itemView) {
             super(itemView);
+            imagen = itemView.findViewById(R.id.imagen);
             nombre = itemView.findViewById(R.id.nombre);
-            cantidad = itemView.findViewById(R.id.cantidad);
+            precio = itemView.findViewById(R.id.precio);
         }
 
         public void bind(final Elemento elemento, final OnItemClickListener onItemClickListener, final OnItemLongClickListener onItemLongClickListener) {
+            imagen.setImageResource(elemento.getImagenResId());
             nombre.setText(elemento.getNombre());
-            cantidad.setText("Cantidad: " + elemento.getCantidad());
+            precio.setText("Precio: $" + elemento.getPrecio());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onItemClickListener.onItemClick(elemento);
-                    cantidad.setText("Cantidad: " + elemento.getCantidad());
+                    precio.setText("Precio: $" + elemento.getPrecio());
                 }
             });
 
@@ -74,11 +78,12 @@ public class ElementoAdapter extends RecyclerView.Adapter<ElementoAdapter.Elemen
                 @Override
                 public boolean onLongClick(View v) {
                     onItemLongClickListener.onItemLongClick(elemento);
-                    cantidad.setText("Cantidad: " + elemento.getCantidad());
+                    precio.setText("Precio: $" + elemento.getPrecio());
                     return true;
                 }
             });
         }
     }
 }
+
 

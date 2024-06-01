@@ -1,22 +1,29 @@
 package com.example.listaelectronica_raqs;
 public class Elemento {
     private String nombre;
-    private int cantidad;
+    private int precio;
+    private int imagenResId;
 
-    public Elemento(String nombre, int cantidad) {
+    public Elemento(String nombre, int precio, int imagenResId) {
         this.nombre = nombre;
-        this.cantidad = cantidad;
+        this.precio = precio;
+        this.imagenResId = imagenResId;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public int getPrecio() {
+        return precio;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    public int getImagenResId() {
+        return imagenResId;
     }
 }
+
