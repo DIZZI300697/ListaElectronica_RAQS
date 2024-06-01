@@ -3,11 +3,13 @@ public class Elemento {
     private String nombre;
     private int precio;
     private int imagenResId;
+    private int cantidad;
 
     public Elemento(String nombre, int precio, int imagenResId) {
         this.nombre = nombre;
         this.precio = precio;
         this.imagenResId = imagenResId;
+        this.cantidad = 0;
     }
 
     public String getNombre() {
@@ -25,5 +27,12 @@ public class Elemento {
     public int getImagenResId() {
         return imagenResId;
     }
-}
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+}

@@ -1,10 +1,12 @@
 package com.example.listaelectronica_raqs;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,7 @@ public class ElementoAdapter extends RecyclerView.Adapter<ElementoAdapter.Elemen
     private List<Elemento> elementos;
     private OnItemClickListener onItemClickListener;
     private OnItemLongClickListener onItemLongClickListener;
+    private Context context;
 
     public interface OnItemClickListener {
         void onItemClick(Elemento elemento);
@@ -25,10 +28,11 @@ public class ElementoAdapter extends RecyclerView.Adapter<ElementoAdapter.Elemen
         void onItemLongClick(Elemento elemento);
     }
 
-    public ElementoAdapter(List<Elemento> elementos, OnItemClickListener onItemClickListener, OnItemLongClickListener onItemLongClickListener) {
+    public ElementoAdapter(Context context, List<Elemento> elementos, OnItemClickListener onItemClickListener, OnItemLongClickListener onItemLongClickListener) {
         this.elementos = elementos;
         this.onItemClickListener = onItemClickListener;
         this.onItemLongClickListener = onItemLongClickListener;
+        this.context = context;
     }
 
     @NonNull
@@ -41,7 +45,7 @@ public class ElementoAdapter extends RecyclerView.Adapter<ElementoAdapter.Elemen
     @Override
     public void onBindViewHolder(@NonNull ElementoViewHolder holder, int position) {
         Elemento elemento = elementos.get(position);
-        holder.bind(elemento, onItemClickListener, onItemLongClickListener);
+        holder.bind(context, elemento, onItemClickListener, onItemLongClickListener);
     }
 
     @Override
@@ -53,37 +57,41 @@ public class ElementoAdapter extends RecyclerView.Adapter<ElementoAdapter.Elemen
         ImageView imagen;
         TextView nombre;
         TextView precio;
+        TextView contador;
 
         public ElementoViewHolder(@NonNull View itemView) {
             super(itemView);
             imagen = itemView.findViewById(R.id.imagen);
             nombre = itemView.findViewById(R.id.nombre);
             precio = itemView.findViewById(R.id.precio);
+            contador = itemView.findViewById(R.id.contador);
         }
 
-        public void bind(final Elemento elemento, final OnItemClickListener onItemClickListener, final OnItemLongClickListener onItemLongClickListener) {
+        public void bind(final Context context, final Elemento elemento, final OnItemClickListener onItemClickListener, final OnItemLongClickListener onItemLongClickListener) {
             imagen.setImageResource(elemento.getImagenResId());
             nombre.setText(elemento.getNombre());
             precio.setText("Precio: $" + elemento.getPrecio());
+            contador.setText("Cantidad: " + elemento.getCantidad());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.onItemClick(elemento);
-                    precio.setText("Precio: $" + elemento.getPrecio());
+                    Toast.makeText(context, "Seleccionaste: " + elemento.getNombre(), Toast.LENGTH_SHORT).show();
+                    elemento.setCantidad(elemento.getCantidad() + 1);
+                    contador.setText("Cantidad: " + elemento.getCantidad());
                 }
             });
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    onItemLongClickListener.onItemLongClick(elemento);
-                    precio.setText("Precio: $" + elemento.getPrecio());
+                    if (elemento.getCantidad() > 0) {
+                        elemento.setCantidad(elemento.getCantidad() - 1);
+                        contador.setText("Cantidad: " + elemento.getCantidad());
+                    }
                     return true;
                 }
             });
         }
     }
 }
-
-

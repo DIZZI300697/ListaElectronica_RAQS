@@ -24,21 +24,18 @@ public class MainActivity extends AppCompatActivity {
         elementos.add(new Elemento("Tablet", 300, R.drawable.tablet));
         elementos.add(new Elemento("Celular", 800, R.drawable.celular));
 
-        ElementoAdapter adapter = new ElementoAdapter(elementos, new ElementoAdapter.OnItemClickListener() {
+        ElementoAdapter adapter = new ElementoAdapter(this, elementos, new ElementoAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Elemento elemento) {
-                elemento.setPrecio(elemento.getPrecio() + 1);
+                // No se necesita acción aquí, ya se maneja en el adaptador
             }
         }, new ElementoAdapter.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(Elemento elemento) {
-                if (elemento.getPrecio() > 0) {
-                    elemento.setPrecio(elemento.getPrecio() - 1);
-                }
+                // No se necesita acción aquí, ya se maneja en el adaptador
             }
         });
 
         recyclerView.setAdapter(adapter);
     }
 }
-
