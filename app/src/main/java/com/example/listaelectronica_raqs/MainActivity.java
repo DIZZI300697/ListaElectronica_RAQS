@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         }, new ElementoAdapter.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(Elemento elemento) {
-                // No se necesita acción aquí, ya se maneja en el adaptador
             }
         });
 
