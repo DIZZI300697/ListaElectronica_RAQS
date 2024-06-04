@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">ListaElectronica_RAQS</string>
+    <string name="app_name">ListaElectronicaRAQS</string>
+    <string name="nombre_televisor">Televisor</string>
+    <string name="nombre_radio">Radio</string>
+    <string name="nombre_computadora">Computadora</string>
+    <string name="nombre_tablet">Tablet</string>
+    <string name="nombre_celular">Celular</string>
+    <string name="precio_texto">Precio: </string>
+    <string name="cantidad_texto">Cantidad: </string>
 </resources>

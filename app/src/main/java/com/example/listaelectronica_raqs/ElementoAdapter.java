@@ -58,9 +58,11 @@ public class ElementoAdapter extends RecyclerView.Adapter<ElementoAdapter.Elemen
         TextView nombre;
         TextView precio;
         TextView contador;
+        View itemView;
 
         public ElementoViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.itemView = itemView;
             imagen = itemView.findViewById(R.id.imagen);
             nombre = itemView.findViewById(R.id.nombre);
             precio = itemView.findViewById(R.id.precio);
@@ -70,15 +72,15 @@ public class ElementoAdapter extends RecyclerView.Adapter<ElementoAdapter.Elemen
         public void bind(final Context context, final Elemento elemento, final OnItemClickListener onItemClickListener, final OnItemLongClickListener onItemLongClickListener) {
             imagen.setImageResource(elemento.getImagenResId());
             nombre.setText(elemento.getNombre());
-            precio.setText("Precio: $" + elemento.getPrecio());
-            contador.setText("Cantidad: " + elemento.getCantidad());
+            precio.setText(context.getString(R.string.precio_texto) + "$" + elemento.getPrecio());
+            contador.setText(context.getString(R.string.cantidad_texto) + elemento.getCantidad());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(context, "Seleccionaste: " + elemento.getNombre(), Toast.LENGTH_SHORT).show();
                     elemento.setCantidad(elemento.getCantidad() + 1);
-                    contador.setText("Cantidad: " + elemento.getCantidad());
+                    contador.setText(context.getString(R.string.cantidad_texto) + elemento.getCantidad());
                 }
             });
 
@@ -87,7 +89,7 @@ public class ElementoAdapter extends RecyclerView.Adapter<ElementoAdapter.Elemen
                 public boolean onLongClick(View v) {
                     if (elemento.getCantidad() > 0) {
                         elemento.setCantidad(elemento.getCantidad() - 1);
-                        contador.setText("Cantidad: " + elemento.getCantidad());
+                        contador.setText(context.getString(R.string.cantidad_texto) + elemento.getCantidad());
                     }
                     return true;
                 }

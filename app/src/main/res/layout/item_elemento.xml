@@ -14,7 +14,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginRight="8dp"
-            android:contentDescription="Imagen del producto" />
+            android:contentDescription="@string/nombre_televisor" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -25,32 +25,26 @@
                 android:id="@+id/nombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@android:color/black" />
+                style="@style/NombreStyle"
+                android:text="" />
 
             <TextView
                 android:id="@+id/precio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:layout_marginTop="4dp"
-                android:textColor="@android:color/black" />
+                style="@style/PrecioStyle"
+                android:text="" />
 
             <TextView
                 android:id="@+id/contador"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:layout_marginTop="4dp"
-                android:text="Cantidad: 0"
-                android:textColor="@android:color/black" />
+                style="@style/CantidadStyle"
+                android:text="" />
         </LinearLayout>
     </LinearLayout>
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black"
-        android:layout_marginTop="8dp" />
+        style="@style/SeparadorStyle" />
 
 </LinearLayout>
